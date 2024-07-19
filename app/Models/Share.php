@@ -27,4 +27,8 @@ class Share extends Model
     {
         return $this->belongsTo(File::class, 'file_id');
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'senderId');
+    }
 }

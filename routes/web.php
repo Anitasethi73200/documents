@@ -56,6 +56,7 @@ Route::group(['middleware' => ['auth', 'XSS']], function () {
     route::resource('communication', CommunicationController::class);
     route::resource('receipt', ReceiptController::class);
 });
+Route::get('file_view/{id}', [FileController::class, 'viewfile'])->name('file.view');
 Route::get('file_inbox', [FileController::class, 'fileinbox'])->name('file.inbox');
 Route::get('file_sent', [FileController::class, 'filesent'])->name('file.sent');
 Route::get('file_greennotes', [FileController::class, 'greennotes'])->name('file.greennotes');

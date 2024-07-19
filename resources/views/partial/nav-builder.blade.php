@@ -72,7 +72,7 @@
                 @can('manage-permission')
                     <li class="dash-item dash-hasmenu {{ request()->is('permission*') ? 'active' : '' }}">
                         <a class="dash-link" href="{{ route('permission.index') }}">
-                            <span class="dash-micon"><i class="ti ti-lock"></i></span>
+                            <span class="dash-micon"><i class="ti ti-package"></i></span>
                             <span class="dash-mtext custom-weight">{{ __('Permissions') }}</span>
                         </a>
                     </li>
@@ -88,7 +88,7 @@
                 @can('manage-section')
                     <li class="dash-item dash-hasmenu {{ request()->is('section*') ? 'active' : '' }}">
                         <a class="dash-link" href="{{ route('section.index') }}">
-                            <span class="dash-micon"><i class="ti ti-lock"></i></span>
+                            <span class="dash-micon"><i class="ti-bookmark"></i></span>
                             <span class="dash-mtext custom-weight">{{ __('Sections') }}</span>
                         </a>
                     </li>
@@ -190,6 +190,26 @@
                         </ul>
                     </li>
                 @endcan
+                @can('manage-notes')
+                <li class="dash-item dash-hasmenu {{ request()->is('file_greennotes*') ? 'active' : '' }}">
+                    <a class="dash-link">
+                        <span class="dash-micon"><i class="ti ti-notes"></i></span>
+                        <span class="dash-mtext custom-weight">{{ __('Notes') }}</span>
+                        <span class="dash-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                class="feather feather-chevron-right">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg></span>
+                    </a>
+                    <ul class="dash-submenu">
+                        <li class="dash-item dash-hasmenu"><a class="dash-link"
+                                href="{{ route('file.greennotes') }}">Green Notes</a></li>
+                        <li class="dash-item dash-hasmenu"><a class="dash-link"
+                                href="{{ route('file.yellownontes') }}">Yellow Notes</a></li>
+                    </ul>
+                </li>
+                @endcan
 
                 @role('admin')
                     <li class="dash-item dash-hasmenu {{ request()->is('department*') ? 'active' : '' }}">
@@ -201,28 +221,28 @@
 
                     <li class="dash-item dash-hasmenu {{ request()->is('section*') ? 'active' : '' }}">
                         <a class="dash-link" href="{{ route('section.index') }}">
-                            <span class="dash-micon"><i class="ti ti-lock"></i></span>
+                            <span class="dash-micon"><i class="ti-bookmark"></i></span>
                             <span class="dash-mtext custom-weight">{{ __('Sections') }}</span>
                         </a>
                     </li>
 
                     <li class="dash-item dash-hasmenu {{ request()->is('category*') ? 'active' : '' }}">
                         <a class="dash-link" href="{{ route('category.index') }}">
-                            <span class="dash-micon"><i class="ti ti-lock"></i></span>
+                            <span class="dash-micon"><i class="ti ti-server"></i></span>
                             <span class="dash-mtext custom-weight">{{ __('Category') }}</span>
                         </a>
                     </li>
 
                     <li class="dash-item dash-hasmenu {{ request()->is('subcategory*') ? 'active' : '' }}">
                         <a class="dash-link" href="{{ route('subcategory.index') }}">
-                            <span class="dash-micon"><i class="ti ti-lock"></i></span>
+                            <span class="dash-micon"><i class="ti ti-archive"></i></span>
                             <span class="dash-mtext custom-weight">{{ __('SubCategory') }}</span>
                         </a>
                     </li>
 
                     <li class="dash-item dash-hasmenu {{ request()->is('file*') ? 'active' : '' }}">
                         <a class="dash-link">
-                            <span class="dash-micon"><i class="ti ti-lock"></i></span>
+                            <span class="dash-micon"><i class="ti ti-files"></i></span>
                             <span class="dash-mtext custom-weight">{{ __('File') }}</span>
                             <span class="dash-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="24"
                                     height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -245,9 +265,9 @@
 
                         </ul>
                     </li>
-                    <li class="dash-item dash-hasmenu {{ request()->is('Notes*') ? 'active' : '' }}">
+                    <li class="dash-item dash-hasmenu {{ request()->is('file_greennotes*') ? 'active' : '' }}">
                         <a class="dash-link">
-                            <span class="dash-micon"><i class="ti ti-lock"></i></span>
+                            <span class="dash-micon"><i class="ti ti-notes"></i></span>
                             <span class="dash-mtext custom-weight">{{ __('Notes') }}</span>
                             <span class="dash-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="24"
                                     height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -267,7 +287,7 @@
 
                     <li class="dash-item dash-hasmenu {{ request()->is('document*') ? 'active' : '' }}">
                         <a class="dash-link">
-                            <span class="dash-micon"><i class="ti ti-lock"></i></span>
+                            <span class="dash-micon"><i class="ti-book"></i></span>
                             <span class="dash-mtext custom-weight">{{ __('Document') }}</span>
                             <span class="dash-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -291,31 +311,31 @@
                     </li>
                     <li class="dash-item dash-hasmenu {{ request()->is('deliverymode*') ? 'active' : '' }}">
                         <a class="dash-link" href="{{ route('deliverymode.index') }}">
-                            <span class="dash-micon"><i class="ti ti-lock"></i></span>
+                            <span class="dash-micon"><i class="ti ti-archive"></i></span>
                             <span class="dash-mtext custom-weight">{{ __('Delivery mode') }}</span>
                         </a>
                     </li>
                     <li class="dash-item dash-hasmenu {{ request()->is('vip*') ? 'active' : '' }}">
                         <a class="dash-link" href="{{ route('vip.index') }}">
-                            <span class="dash-micon"><i class="ti ti-lock"></i></span>
+                            <span class="dash-micon"><i class="ti ti-target"></i></span>
                             <span class="dash-mtext custom-weight">{{ __('VIP') }}</span>
                         </a>
                     </li>
                     <li class="dash-item dash-hasmenu {{ request()->is('sendertype*') ? 'active' : '' }}">
                         <a class="dash-link" href="{{ route('sendertype.index') }}">
-                            <span class="dash-micon"><i class="ti ti-lock"></i></span>
+                            <span class="dash-micon"><i class=" ti ti-sharethis"></i></span>
                             <span class="dash-mtext custom-weight">{{ __('SenderType') }}</span>
                         </a>
                     </li>
                     <li class="dash-item dash-hasmenu {{ request()->is('communication*') ? 'active' : '' }}">
                         <a class="dash-link" href="{{ route('communication.index') }}">
-                            <span class="dash-micon"><i class="ti ti-lock"></i></span>
+                            <span class="dash-micon"><i class="ti ti-layers"></i></span>
                             <span class="dash-mtext custom-weight">{{ __('Communication') }}</span>
                         </a>
                     </li>
                     <li class="dash-item dash-hasmenu {{ request()->is('receipt*') ? 'active' : '' }}">
                         <a class="dash-link">
-                            <span class="dash-micon"><i class="ti ti-lock"></i></span>
+                            <span class="dash-micon"><i class="ti ti-receipt"></i></span>
                             <span class="dash-mtext custom-weight">{{ __('Receipt') }}</span>
                             <span class="dash-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="24"
                                     height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"

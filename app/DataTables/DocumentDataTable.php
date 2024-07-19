@@ -88,7 +88,7 @@ class DocumentDataTable extends DataTable
                 ->title('Sl No.')
                 ->render('meta.row + meta.settings._iDisplayStart + 1;')
                 ->orderable(false),
-            Column::make('file_id'),
+            Column::make('file_id')->title('File name'),
             Column::make('file'),
             Column::make('dtype'),
             Column::computed('action')

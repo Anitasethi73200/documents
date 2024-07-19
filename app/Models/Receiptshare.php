@@ -21,4 +21,8 @@ class Receiptshare extends Model
     {
         return $this->belongsTo(Receipt::class,'receipt_id');
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'sender_id');
+    }
 }

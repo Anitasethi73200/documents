@@ -26,4 +26,12 @@ class Fileshare extends Model
     {
         return $this->belongsTo(File::class,'file_id');
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'sender_id');
+    }
+    public function notes()
+    {
+        return $this->belongsTo(Notes::class, 'gnotes_id');
+    }
 }

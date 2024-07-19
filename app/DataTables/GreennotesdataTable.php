@@ -82,7 +82,7 @@ class GreennotesdataTable extends DataTable
                 ->title('Sl No.')
                 ->render('meta.row + meta.settings._iDisplayStart + 1;')
                 ->orderable(false),
-            Column::make('file_id'),
+            Column::make('file_id')->title('File'),
             Column::make('description'),
           
         ];

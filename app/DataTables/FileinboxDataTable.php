@@ -16,13 +16,22 @@ class FileinboxDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-
+            ->editColumn('sender_id', function (Fileshare $share) {
+                return ($share->user != null) ? $share->user->name : '-';
+            })
             ->editColumn('department_id', function (Fileshare $share) {
                 return ($share->department != null) ? $share->department->name : '-';
             })
             ->editColumn('file_id', function (Fileshare $share) {
                 return ($share->fileshare != null) ? $share->fileshare->file_name : '-';
             })
+            ->editColumn('file_id', function (Fileshare $share) {
+               
+                    $url = route('file.view', $share->id);
+                
+                return '<a href="' . $url . '">' . $share->fileshare->file_name . '</a>';
+            })
+            ->rawColumns(['file_id'])
 
             ->editColumn('section_id', function (Fileshare $share) {
                 return ($share->section != null) ? $share->section->name : '-';
@@ -88,9 +97,10 @@ class FileinboxDataTable extends DataTable
                 ->title('Sl No.')
                 ->render('meta.row + meta.settings._iDisplayStart + 1;')
                 ->orderable(false),
-            Column::make('file_id'),
-            Column::make('section_id'),
-            Column::make('department_id'),
+            Column::make('sender_id'),
+            Column::make('file_id')->title('File'),
+            Column::make('section_id')->title('Section'),
+            Column::make('department_id')->title('Department'),
             Column::make('duedate'),
             Column::make('priority'),
             Column::computed('action')

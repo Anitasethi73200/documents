@@ -19,10 +19,10 @@
                     <div class="card-body">
                         <div class="form-group">
                             {{ Form::label('file_id', __('filename')) }}
-                            <select name="file_id" id="file_id" class="form-control" readonly>
+                            <select name="file_id" id="file_id" class="form-control" disabled>
                                 <option value="">Select File</option>
                                 @foreach ($file as $files)
-                                    <option value="{{ $files->id }}" @if ($file_detail->file_id == $files->id) selected @endif>
+                                    <option value="{{ $files->id }}" @if ($file_detail->file_id == $files->id) selected @endif >
                                         {{ $files->file_name }}</option>
                                 @endforeach
                             </select>
@@ -32,7 +32,7 @@
                         </div>
                         <div class="form-group">
                             {{ Form::label('dtype', __('Document Type')) }}
-                            <select name="dtype" id="dtype" class="form-control" readonly>
+                            <select name="dtype" id="dtype" class="form-control" disabled>
                                 <option value="">Select Document Type</option>
                                 <option value="create" @if ($document->dtype == 'create') selected @endif> Create
                                 </option>

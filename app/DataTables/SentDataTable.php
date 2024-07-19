@@ -85,9 +85,9 @@ class SentDataTable extends DataTable
                 ->title('Sl No.')
                 ->render('meta.row + meta.settings._iDisplayStart + 1;')
                 ->orderable(false),
-            Column::make('receipt_id'),
-            Column::make('section_id'),
-            Column::make('department_id'),
+            Column::make('receipt_id')->title('Receipt'),
+            Column::make('section_id')->title('Section'),
+            Column::make('department_id')->title('Department'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

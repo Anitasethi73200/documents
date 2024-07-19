@@ -2,7 +2,9 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\DocumentDataTable;
+use App\DataTables\DocumentinboxdataTable;
 use App\DataTables\DocumentsharedataTable;
+use App\DataTables\ShareDataTable;
 use App\Models\Department;
 use App\Models\Document as ModelsDocument;
 use App\Models\File as ModelsFile;
@@ -199,7 +201,7 @@ class DocumentController extends Controller
     {
         return $table->render('document.sentdocument');
     }
-    public function documentinbox(DocumentsharedataTable $table)
+    public function documentinbox(ShareDataTable $table)
     {
         return $table->render('document.inbox');
     }

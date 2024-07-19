@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Facades\UtilityFacades;
+use App\Models\Fileshare;
 use App\Models\Modual;
+use App\Models\Receiptshare;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -29,8 +31,11 @@ class HomeController extends Controller
             $modual = Modual::count();
             $role = Role::count();
             $languages = count(UtilityFacades::languages());
+            $file_inbox = Fileshare::where('recever_id',Auth::user()->id)->orderBy('id','DESC')->get();
+            $receipt_inbox = Receiptshare::where('recever_id',Auth::user()->id)->orderBy('id','DESC')->get();
 
-            return view('dashboard.homepage', compact('user', 'modual', 'role', 'languages'));
+            return view('dashboard.homepage', compact('user', 'modual', 'role', 'languages', 'receipt_inbox', 'file_inbox'));
+
         }
     }
 

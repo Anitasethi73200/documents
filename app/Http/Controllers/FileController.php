@@ -83,6 +83,7 @@ class FileController extends Controller
     public function update(Request $request, ModelsFile $File)
     {
         $file = ModelsFile::findOrFail($File['id']);
+
         $request->validate([
             'file_name' => 'required|max:40',
             'fileno' => 'required',
@@ -98,7 +99,7 @@ class FileController extends Controller
 
         return redirect()->route('file.index')->with(
             'success',
-            'document ' . $file->name . ' updated!'
+            'file ' . $file->name . ' updated!'
         );
     }
     public function destroy($id)
@@ -229,7 +230,7 @@ class FileController extends Controller
 
         $fileshare->save();
 
-        return redirect()->back()->with('File', 'FileShare successfully');
+        return redirect()->route('file.index')->with('success', __('Fileshare  successfully.'));
     }
 
     public function getuser(Request $request)
@@ -239,6 +240,15 @@ class FileController extends Controller
             ->get();
 
         return response()->json($users);
+    }
+
+    public function viewfile($id)
+    {
+        $viewfile = Fileshare::find($id);
+        $notes = Notes::where('id', $viewfile->gnotes_id)->first();
+        $correspondence = Correspondence::where('file_id',$viewfile->file_id)->get();
+        // dd($correspondence,$viewfile->file_id);
+        return view('file.shareviewfile', compact('viewfile','gnotes','notes','correspondence'));
     }
 
     public function filesent(FilesentDataTable $table)

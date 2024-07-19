@@ -12,7 +12,12 @@ class InboxDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-
+            ->editColumn('sender_id', function (Receiptshare $share) {
+                return ($share->user != null) ? $share->user->name : '-';
+            })
+            ->editColumn('receipt_id', function (Receiptshare $share) {
+                return ($share->Receipt != null) ? $share->Receipt->name : '-';
+            })
             ->editColumn('department_id', function (Receiptshare $share) {
                 return ($share->department != null) ? $share->department->name : '-';
             })
@@ -81,9 +86,10 @@ class InboxDataTable extends DataTable
                 ->title('Sl No.')
                 ->render('meta.row + meta.settings._iDisplayStart + 1;')
                 ->orderable(false),
-            Column::make('receipt_id'),
-            Column::make('section_id'),
-            Column::make('department_id'),
+            Column::make('sender_id'),
+            Column::make('receipt_id')->title('Receipt'),
+            Column::make('section_id')->title('Section'),
+            Column::make('department_id')->title('Department'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

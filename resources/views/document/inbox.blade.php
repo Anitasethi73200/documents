@@ -3,8 +3,7 @@
 @section('breadcrumb')
     <ul class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ __('Dashboard') }}</a></li>
-        <li class="breadcrumb-item">{{ __('Inbox') }}
-        </li>
+        <li class="breadcrumb-item">{{ __('Inbox') }}</li>
     </ul>
 @endsection
 

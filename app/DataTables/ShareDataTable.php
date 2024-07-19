@@ -13,11 +13,12 @@ class ShareDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            
+            ->editColumn('senderId', function (Share $share) {
+                return ($share->user != null) ? $share->user->name : '-';
+            })
             ->editColumn('department_id', function (Share $share) {
                 return ($share->department != null) ? $share->department->name : '-';
             })
-
             ->editColumn('section_id', function (Share $share) {
                 return ($share->section != null) ? $share->section->name : '-';
             })
@@ -41,7 +42,7 @@ class ShareDataTable extends DataTable
 
     public function query(Share $model)
     {
-        return $model->newQuery()->where('receverid', Auth::user()->id)->where('revert_status','1')->orderBy('id', 'DESC');
+        return $model->newQuery()->where('receverid', Auth::user()->id)->orderBy('id', 'DESC');
     }
 
     public function html()
@@ -95,11 +96,11 @@ class ShareDataTable extends DataTable
                 ->title('Sl No.')
                 ->render('meta.row + meta.settings._iDisplayStart + 1;')
                 ->orderable(false),
-            Column::make('doc_id'),
-            Column::make('file_id'),
-            Column::make('section_id'),
-            Column::make('department_id'),
-            Column::make('status'),
+            Column::make('senderId'),
+            Column::make('doc_id')->title('Document'),
+            Column::make('file_id')->title('File'),
+            Column::make('section_id')->title('Section'),
+            Column::make('department_id')->title('Department'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

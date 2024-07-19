@@ -11,6 +11,7 @@ class File extends Model
     protected $fillable = ['file_name','metatags','fileno','description','category_id','subcategory_id','department_id','section_id','status'];
 
     public function Category(){
+        
        return $this->belongsTo(Category::class,'category_id');
     }
     public function subcategory()
